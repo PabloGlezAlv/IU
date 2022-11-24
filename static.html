@@ -58,7 +58,7 @@
                     </div>
                     <!--Boton para el filtro de busqueda avanzada de usuarios-->
                     <div class="col">
-                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                        <button id="search-advanced-toggle-users" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <div class="col text-end">
                         <button title="Crea un nuevo usuario" class="add-user btn btn-outline-primary">➕</button>
@@ -1097,14 +1097,14 @@
                     </div>
                     <!--Boton para la busqueda avanzada de cursos-->
                     <div class="col">
-                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                        <button id="search-advanced-toggle-courses" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <div class="col text-end">
                         <button title="Crea un nuevo curso" class="add-course btn btn-outline-primary">➕</button>
                     </div>
                 </div>
                 <!--Filtro para la busqueda avanzada de cursos-->
-                <div id="filter-in-curses" class="m-2 row p-2 border border-2 rounded">
+                <div id="filter-in-courses" class="m-2 row p-2 border border-2 rounded">
                     <input type="search" name="name" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
                     <select name="area" class="col-md-6 m-1 form-select form-select-sm">
                         <option value="">(ninguno)</option>
@@ -1348,7 +1348,7 @@
 
                 <!--Boton para el filtro para la pestaña ediciones donde participa un alumno-->
                 <div class="col">
-                    <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                    <button id="search-advanced-toggle-editions" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                 </div>
 
                 <!--Filtro para la pestaña ediciones donde participa un alumno-->
@@ -1445,7 +1445,7 @@
 
                     <!--Boton para el filtro para profesores de un curso en concreto-->
                     <div class="col">
-                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                        <button id="search-advanced-toggle-teachers-on-course" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <!--filtro para profesores de un curso en concreto-->
                     <div id="filter-in-oneedition2" class="m-2 row p-2 border border-2 rounded">
@@ -1518,7 +1518,7 @@
 
                     <!--Boton para el filtro para alumnos de un curso en concreto-->
                     <div class="col">
-                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                        <button id="search-advanced-toggle-oneuser" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <!--Filtro para alumnos de un curso en concreto-->
                     <div id="filter-in-oneedition" class="m-2 row p-2 border border-2 rounded">
@@ -1812,30 +1812,30 @@
 
     <script>
 
-function advancedUserFilter(filterSel, rowSel) {
-        const filterDiv = document.querySelector(filterSel);
-        const name = filterDiv.querySelector("input[name=name]").value.toLowerCase();
-        const dni = filterDiv.querySelector("input[name=dni]").value.toLowerCase();
-        const email = filterDiv.querySelector("input[name=email]").value.toLowerCase();
-        const role = filterDiv.querySelector("select[name=role]").value.toLowerCase();
+        function advancedUserFilter(filterSel, rowSel) {
+            const filterDiv = document.querySelector(filterSel);
+            const name = filterDiv.querySelector("input[name=name]").value.toLowerCase();
+            const dni = filterDiv.querySelector("input[name=dni]").value.toLowerCase();
+            const email = filterDiv.querySelector("input[name=email]").value.toLowerCase();
+            const role = filterDiv.querySelector("select[name=role]").value.toLowerCase();
 
-        const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+            const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
 
-        for (let r of document.querySelectorAll(rowSel)) {
-            let ok = true;
-            for (let [f, col] of 
-                [[name, 0], [role, 1], [email, 2], [dni, 3]]) {
-                    if (f == '' || ! ok) continue;
-                    const v = valueAt(r, col).toLowerCase();
-                    console.log(v, f, col, v.indexOf(f));
-                    if (v.indexOf(f) == -1) ok = false;
+            for (let r of document.querySelectorAll(rowSel)) {
+                let ok = true;
+                for (let [f, col] of 
+                    [[name, 0], [role, 1], [email, 2], [dni, 3]]) {
+                        if (f == '' || ! ok) continue;
+                        const v = valueAt(r, col).toLowerCase();
+                        console.log(v, f, col, v.indexOf(f));
+                        if (v.indexOf(f) == -1) ok = false;
+                }
+                r.style.display = ok ? '' : 'none';
             }
-            r.style.display = ok ? '' : 'none';
-        }
-    }
+        }   
 
 
-    document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>
+        document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>
         o.addEventListener('input', e => {
             console.log("filtrando");
             advancedUserFilter("#filter-in-users", ".user-table-row");
@@ -1869,10 +1869,10 @@ function advancedUserFilter(filterSel, rowSel) {
         }
     
     
-        document.querySelectorAll("#filter-in-curses input, #filter-in-curses select").forEach(o =>
+        document.querySelectorAll("#filter-in-courses input, #filter-in-courses select").forEach(o =>
             o.addEventListener('input', e => {
                 console.log("filtrando cursos");
-                advancedCourseFilter("#filter-in-curses", ".course-table-row");
+                advancedCourseFilter("#filter-in-courses", ".course-table-row");
             }));
     
         </script>
