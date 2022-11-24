@@ -1904,7 +1904,7 @@
         
             document.querySelectorAll("#filter-in-oneedition2 input, #filter-in-oneedition2 select").forEach(o =>
                 o.addEventListener('input', e => {
-                    console.log("filtrando profesores");
+                    console.log("filtrando one edition2");
                     advancedTeacherFromEditionFilter("#filter-in-oneedition2", ".teacher-table-row");
                 }));
         
@@ -1938,12 +1938,44 @@
         
             document.querySelectorAll("#filter-in-oneedition input, #filter-in-oneedition select").forEach(o =>
                 o.addEventListener('input', e => {
-                    console.log("filtrando alumnos");
+                    console.log("filtrando one edition");
                     advancedStudentsFromEditionFilter("#filter-in-oneedition", ".student-table-row");
                 }));
         
     </script>
 
+    <script>
+
+        function advancedEditionsFromStudentsFilter(filterSel, rowSel) {
+                const filterDiv = document.querySelector(filterSel);
+                const edicion = filterDiv.querySelector("input[name=edicion]").value.toLowerCase();
+                const global = filterDiv.querySelector("input[name=global]").value.toLowerCase();
+                const propia = filterDiv.querySelector("input[name=propia]").value.toLowerCase();
+                const nota = filterDiv.querySelector("input[name=nota]").value.toLowerCase();
+        
+                const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+        
+                for (let r of document.querySelectorAll(rowSel)) {
+                    let ok = true;
+                    for (let [f, col] of 
+                        [[edicion, 0], [global, 1], [propia, 2], [nota, 3]]) {
+                            if (f == '' || ! ok) continue;
+                            const v = valueAt(r, col).toLowerCase();
+                            console.log(v, f, col, v.indexOf(f));
+                            if (v.indexOf(f) == -1) ok = false;
+                    }
+                    r.style.display = ok ? '' : 'none';
+                }
+            }
+        
+        
+            document.querySelectorAll("#filter-in-oneuser input, #filter-in-oneuser select").forEach(o =>
+                o.addEventListener('input', e => {
+                    console.log("filtrando one user");
+                    advancedEditionsFromStudentsFilter("#filter-in-oneuser", ".user-edition-table-row");
+                }));
+        
+    </script>
 </body>
 
 </html>
