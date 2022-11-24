@@ -1445,14 +1445,13 @@
 
                     <!--Boton para el filtro para profesores de un curso en concreto-->
                     <div class="col">
-                        <button id="search-advanced-toggle-teachers-on-course" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                        <button id="search-advanced-toggle-teachers-on-edition" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <!--filtro para profesores de un curso en concreto-->
                     <div id="filter-in-oneedition2" class="m-2 row p-2 border border-2 rounded">
                         <input type="search" name="Nombre" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
                         <input type="search" name="Correo" class="col-md-4 m-1 form-control form-control-sm" placeholder="Correo o fragmento">
                         <input type="search" name="DNI" class="col-md-6 m-1 form-control form-control-sm" placeholder="DNI o fragmento">
-                        <input type="search" name="Nota" class="col-md-6 m-1 form-control form-control-sm" placeholder="Nota o fragmento">
                     </div>
 
 
@@ -1518,13 +1517,14 @@
 
                     <!--Boton para el filtro para alumnos de un curso en concreto-->
                     <div class="col">
-                        <button id="search-advanced-toggle-oneuser" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                        <button id="search-advanced-toggle-students-on-edition" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <!--Filtro para alumnos de un curso en concreto-->
                     <div id="filter-in-oneedition" class="m-2 row p-2 border border-2 rounded">
                         <input type="search" name="Nombre" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
                         <input type="search" name="Correo" class="col-md-4 m-1 form-control form-control-sm" placeholder="Correo o fragmento">
                         <input type="search" name="DNI" class="col-md-6 m-1 form-control form-control-sm" placeholder="DNI o fragmento">
+                        <input type="search" name="Nota" class="col-md-6 m-1 form-control form-control-sm" placeholder="Nota o fragmento">
                     </div>
 
                     <div class="col text-end">
@@ -1844,38 +1844,106 @@
     </script>
 
     
-<script>
+    <script>
 
-    function advancedCourseFilter(filterSel, rowSel) {
-            const filterDiv = document.querySelector(filterSel);
-            const name = filterDiv.querySelector("input[name=name]").value.toLowerCase();
-            const edicion = filterDiv.querySelector("input[name=edicion]").value.toLowerCase();
-            const area = filterDiv.querySelector("select[name=area]").value.toLowerCase();
-            const nivel = filterDiv.querySelector("select[name=nivel]").value.toLowerCase();
-    
-            const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
-    
-            for (let r of document.querySelectorAll(rowSel)) {
-                let ok = true;
-                for (let [f, col] of 
-                    [[name, 0], [edicion, 3], [area, 1], [nivel, 2]]) {
-                        if (f == '' || ! ok) continue;
-                        const v = valueAt(r, col).toLowerCase();
-                        console.log(v, f, col, v.indexOf(f));
-                        if (v.indexOf(f) == -1) ok = false;
+        function advancedCourseFilter(filterSel, rowSel) {
+                const filterDiv = document.querySelector(filterSel);
+                const name = filterDiv.querySelector("input[name=name]").value.toLowerCase();
+                const edicion = filterDiv.querySelector("input[name=edicion]").value.toLowerCase();
+                const area = filterDiv.querySelector("select[name=area]").value.toLowerCase();
+                const nivel = filterDiv.querySelector("select[name=nivel]").value.toLowerCase();
+        
+                const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+        
+                for (let r of document.querySelectorAll(rowSel)) {
+                    let ok = true;
+                    for (let [f, col] of 
+                        [[name, 0], [edicion, 3], [area, 1], [nivel, 2]]) {
+                            if (f == '' || ! ok) continue;
+                            const v = valueAt(r, col).toLowerCase();
+                            console.log(v, f, col, v.indexOf(f));
+                            if (v.indexOf(f) == -1) ok = false;
+                    }
+                    r.style.display = ok ? '' : 'none';
                 }
-                r.style.display = ok ? '' : 'none';
             }
-        }
-    
-    
-        document.querySelectorAll("#filter-in-courses input, #filter-in-courses select").forEach(o =>
-            o.addEventListener('input', e => {
-                console.log("filtrando cursos");
-                advancedCourseFilter("#filter-in-courses", ".course-table-row");
-            }));
-    
-        </script>
+        
+        
+            document.querySelectorAll("#filter-in-courses input, #filter-in-courses select").forEach(o =>
+                o.addEventListener('input', e => {
+                    console.log("filtrando cursos");
+                    advancedCourseFilter("#filter-in-courses", ".course-table-row");
+                }));
+        
+    </script>
+
+    <!-- script para filtrar la lista de profesores de una edición concreta-->
+    <script>
+
+        function advancedTeacherFromEditionFilter(filterSel, rowSel) {
+                const filterDiv = document.querySelector(filterSel);
+                const name = filterDiv.querySelector("input[name=Nombre]").value.toLowerCase();
+                const email = filterDiv.querySelector("input[name=Correo]").value.toLowerCase();
+                const dni = filterDiv.querySelector("input[name=DNI]").value.toLowerCase();
+        
+                const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+        
+                for (let r of document.querySelectorAll(rowSel)) {
+                    let ok = true;
+                    for (let [f, col] of 
+                        [[name, 0], [email, 1], [dni, 2]]) {
+                            if (f == '' || ! ok) continue;
+                            const v = valueAt(r, col).toLowerCase();
+                            console.log(v, f, col, v.indexOf(f));
+                            if (v.indexOf(f) == -1) ok = false;
+                    }
+                    r.style.display = ok ? '' : 'none';
+                }
+            }
+        
+        
+            document.querySelectorAll("#filter-in-oneedition2 input, #filter-in-oneedition2 select").forEach(o =>
+                o.addEventListener('input', e => {
+                    console.log("filtrando profesores");
+                    advancedTeacherFromEditionFilter("#filter-in-oneedition2", ".teacher-table-row");
+                }));
+        
+    </script>
+
+    <!-- script para filtrar la lista de alumnos de una edición concreta-->
+    <script>
+
+        function advancedStudentsFromEditionFilter(filterSel, rowSel) {
+                const filterDiv = document.querySelector(filterSel);
+                const name = filterDiv.querySelector("input[name=Nombre]").value.toLowerCase();
+                const email = filterDiv.querySelector("input[name=Correo]").value.toLowerCase();
+                const dni = filterDiv.querySelector("input[name=DNI]").value.toLowerCase();
+                const note = filterDiv.querySelector("input[name=Nota]").value.toLowerCase();
+        
+                const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+        
+                for (let r of document.querySelectorAll(rowSel)) {
+                    let ok = true;
+                    for (let [f, col] of 
+                        [[name, 0], [email, 1], [dni, 2], [note, 3]]) {
+                            if (f == '' || ! ok) continue;
+                            const v = valueAt(r, col).toLowerCase();
+                            console.log(v, f, col, v.indexOf(f));
+                            if (v.indexOf(f) == -1) ok = false;
+                    }
+                    r.style.display = ok ? '' : 'none';
+                }
+            }
+        
+        
+            document.querySelectorAll("#filter-in-oneedition input, #filter-in-oneedition select").forEach(o =>
+                o.addEventListener('input', e => {
+                    console.log("filtrando alumnos");
+                    advancedStudentsFromEditionFilter("#filter-in-oneedition", ".student-table-row");
+                }));
+        
+    </script>
+
 </body>
 
 </html>
