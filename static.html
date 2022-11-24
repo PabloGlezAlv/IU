@@ -51,20 +51,20 @@
         <div class="row">
             <div id="users" class="col-md-6 border border-3 rounded">
                 <h4 class="mt-3">Usuarios</h4>
-
                 <div class="row">
                     <div class="col md-auto input-group">
                         <input id="search-in-users-input" type="search" class="form-control" placeholder="Filtrar">
                         <span class="input-group-text" id="search-in-users-button">🔍</span>
                     </div>
+                    <!--Boton para el filtro de busqueda avanzada de usuarios-->
                     <div class="col">
-                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">🔍🔍</button>
+                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
                     </div>
                     <div class="col text-end">
                         <button title="Crea un nuevo usuario" class="add-user btn btn-outline-primary">➕</button>
                     </div>
                 </div>
-
+                <!--Filtro de busqueda avanzada de usuarios-->
                 <div id="filter-in-users" class="m-2 p-2 border border-2 rounded">
                     <div class="row">
                         <div class="col-8">
@@ -79,9 +79,10 @@
                             <input type="search" name="email" class="m-1 form-control form-control-sm" placeholder="correo o fragmento">
                         </div>
                         <div class="col-6">
-                            <select name="rol" class="m-1 form-select form-select-sm">
+                            <select name="role" class="m-1 form-select form-select-sm">
+                                <option value="">(ninguno)</option>
                                 <option value="admin">admin</option>
-                                <option value="alumno" selected>alumno</option>
+                                <option value="alumno">alumno</option>
                                 <option value="profesor">profesor</option>
                             </select>                
                         </div>
@@ -1094,9 +1095,30 @@
                         <input id="search-in-courses-input" type="search" class="form-control" placeholder="Filtrar">
                         <span class="input-group-text" id="search-in-users-button">🔍</span>
                     </div>
+                    <!--Boton para la busqueda avanzada de cursos-->
+                    <div class="col">
+                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                    </div>
                     <div class="col text-end">
                         <button title="Crea un nuevo curso" class="add-course btn btn-outline-primary">➕</button>
                     </div>
+                </div>
+                <!--Filtro para la busqueda avanzada de cursos-->
+                <div id="filter-in-curses" class="m-2 row p-2 border border-2 rounded">
+                    <input type="search" name="name" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+                    <select name="area" class="col-md-6 m-1 form-select form-select-sm">
+                        <option value="">(ninguno)</option>
+                        <option value="internet">internet</option>
+                        <option value="tec.informáticas">tec.informáticas</option>
+                        <option value="ofimática">ofimática</option>
+                    </select>
+                    <select name="nivel" class="col-md-6 m-1 form-select form-select-sm">
+                        <option value="">(ninguno)</option>
+                        <option value="iniciación">iniciación</option>
+                        <option value="generalista">generalista</option>
+                        <option value="especialización">especialización</option>
+                    </select>
+                    <input type="search" name="edicion" class="col-md-6 m-1  form-control form-control-sm" placeholder="edicion o fragmento">
                 </div>
 
                 <table class="table">
@@ -1323,6 +1345,20 @@
                         <span class="input-group-text">🔍</span>
                     </div>
                 </div>
+
+                <!--Boton para el filtro para la pestaña ediciones donde participa un alumno-->
+                <div class="col">
+                    <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                </div>
+
+                <!--Filtro para la pestaña ediciones donde participa un alumno-->
+                <div id="filter-in-oneuser" class="m-2 row p-2 border border-2 rounded">
+                    <input type="search" name="edicion" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Edición o fragmento">
+                    <input type="search" name="global" class="col-md-4 m-1 form-control form-control-sm" placeholder="Valoración global o fragmento">
+                    <input type="search" name="propia" class="col-md-6 m-1 form-control form-control-sm" placeholder="Valoración propia o fragmento">
+                    <input type="search" name="nota" class="col-md-6 m-1 form-control form-control-sm" placeholder="Nota o fragmento">    
+                </div>
+
                 <table class="table w-100">
                     <tbody>
                         <tr>
@@ -1406,6 +1442,20 @@
                         <input id="search-in-teachers-input" type="search" class="form-control" placeholder="Filtrar">
                         <span class="input-group-text">🔍</span>
                     </div>
+
+                    <!--Boton para el filtro para profesores de un curso en concreto-->
+                    <div class="col">
+                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                    </div>
+                    <!--filtro para profesores de un curso en concreto-->
+                    <div id="filter-in-oneedition2" class="m-2 row p-2 border border-2 rounded">
+                        <input type="search" name="Nombre" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+                        <input type="search" name="Correo" class="col-md-4 m-1 form-control form-control-sm" placeholder="Correo o fragmento">
+                        <input type="search" name="DNI" class="col-md-6 m-1 form-control form-control-sm" placeholder="DNI o fragmento">
+                        <input type="search" name="Nota" class="col-md-6 m-1 form-control form-control-sm" placeholder="Nota o fragmento">
+                    </div>
+
+
                     <div class="col text-end">
                         <button title="Matricula un profesor para Análisis con Python (2021-22)" data-id="121"
                             class="add-profesor-to-edition btn btn-outline-primary">➕</button>
@@ -1465,6 +1515,18 @@
                         <input id="search-in-students-input" type="search" class="form-control" placeholder="Filtrar">
                         <span class="input-group-text">🔍</span>
                     </div>
+
+                    <!--Boton para el filtro para alumnos de un curso en concreto-->
+                    <div class="col">
+                        <button id="search-advanced-toggle" title="Búsqueda avanzada" class="add-user btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+                    </div>
+                    <!--Filtro para alumnos de un curso en concreto-->
+                    <div id="filter-in-oneedition" class="m-2 row p-2 border border-2 rounded">
+                        <input type="search" name="Nombre" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+                        <input type="search" name="Correo" class="col-md-4 m-1 form-control form-control-sm" placeholder="Correo o fragmento">
+                        <input type="search" name="DNI" class="col-md-6 m-1 form-control form-control-sm" placeholder="DNI o fragmento">
+                    </div>
+
                     <div class="col text-end">
                         <button title="Matricula un alumno para Análisis con Python (2021-22)" data-id="121"
                             class="add-alumno-to-edition btn btn-outline-primary">➕</button>
@@ -1750,8 +1812,70 @@
 
     <script>
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users")
+function advancedUserFilter(filterSel, rowSel) {
+        const filterDiv = document.querySelector(filterSel);
+        const name = filterDiv.querySelector("input[name=name]").value.toLowerCase();
+        const dni = filterDiv.querySelector("input[name=dni]").value.toLowerCase();
+        const email = filterDiv.querySelector("input[name=email]").value.toLowerCase();
+        const role = filterDiv.querySelector("select[name=role]").value.toLowerCase();
+
+        const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+
+        for (let r of document.querySelectorAll(rowSel)) {
+            let ok = true;
+            for (let [f, col] of 
+                [[name, 0], [role, 1], [email, 2], [dni, 3]]) {
+                    if (f == '' || ! ok) continue;
+                    const v = valueAt(r, col).toLowerCase();
+                    console.log(v, f, col, v.indexOf(f));
+                    if (v.indexOf(f) == -1) ok = false;
+            }
+            r.style.display = ok ? '' : 'none';
+        }
+    }
+
+
+    document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>
+        o.addEventListener('input', e => {
+            console.log("filtrando");
+            advancedUserFilter("#filter-in-users", ".user-table-row");
+        }));
+
     </script>
+
+    
+<script>
+
+    function advancedCourseFilter(filterSel, rowSel) {
+            const filterDiv = document.querySelector(filterSel);
+            const name = filterDiv.querySelector("input[name=name]").value.toLowerCase();
+            const edicion = filterDiv.querySelector("input[name=edicion]").value.toLowerCase();
+            const area = filterDiv.querySelector("select[name=area]").value.toLowerCase();
+            const nivel = filterDiv.querySelector("select[name=nivel]").value.toLowerCase();
+    
+            const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
+    
+            for (let r of document.querySelectorAll(rowSel)) {
+                let ok = true;
+                for (let [f, col] of 
+                    [[name, 0], [edicion, 1], [area, 2], [nivel, 3]]) {
+                        if (f == '' || ! ok) continue;
+                        const v = valueAt(r, col).toLowerCase();
+                        console.log(v, f, col, v.indexOf(f));
+                        if (v.indexOf(f) == -1) ok = false;
+                }
+                r.style.display = ok ? '' : 'none';
+            }
+        }
+    
+    
+        document.querySelectorAll("#filter-in-curses input, #filter-in-curses select").forEach(o =>
+            o.addEventListener('input', e => {
+                console.log("filtrando cursos");
+                advancedCourseFilter("#filter-in-curses", ".course-table-row");
+            }));
+    
+        </script>
 </body>
 
 </html>
