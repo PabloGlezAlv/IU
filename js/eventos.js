@@ -302,3 +302,11 @@ export function alternaBusquedaAvanzadaUsuarios(selBoton, selNormal, selAvanzada
         });
     avanzado.style.display = 'none';
 }
+
+export function cleanFilters(selBoton, selNormal) {
+    const normal = document.querySelector(selNormal).parentElement;
+    document.querySelector(normal)
+        .addEventListener('click', e => {
+            U.clean(selNormal);
+        });
+}
