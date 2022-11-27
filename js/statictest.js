@@ -38,6 +38,7 @@ E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-u
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#filter-in-courses")
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#filter-in-oneedition2")
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#filter-in-oneedition")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
 
 // cosas que exponemos para poder usarlas desde la consola
 window.Cm = Cm;
