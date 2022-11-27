@@ -38,9 +38,13 @@ E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-u
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#filter-in-courses")
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#filter-in-oneedition2")
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#filter-in-oneedition")
-E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#filter-in-oneuser")
 
-E.cleanFilters("#search-advanced-toggle-users", "#clean-filters")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#clean-filters-courses")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#clean-filters-oneedition2")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#clean-filters-oneedition")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser")
 
 // cosas que exponemos para poder usarlas desde la consola
 window.Cm = Cm;
