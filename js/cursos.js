@@ -89,6 +89,10 @@ function update() {
 
         E.bindSortColumn("tr>th");
 
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users")
+        E.userFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
+
     } catch (e) {
         console.log('Error actualizando', e);
     }

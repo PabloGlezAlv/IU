@@ -78,8 +78,40 @@ export function createUserTable(users) {
             <input id="search-in-users-input" type="search" class="form-control" placeholder="Filtrar" />
             <span class="input-group-text" id="search-in-users-button">🔍</span>
         </div>
+
+        <!--Boton para el filtro de busqueda avanzada de usuarios-->
+        <div class="col">
+            <button id="search-advanced-toggle-users" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="clean-filters" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-users input, #filter-in-users select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+        </div>
+        
         <div class="col text-end">${botonNuevoUsuario}</div>
     </div>
+
+    <!--Filtro de busqueda avanzada de usuarios-->
+                <div id="filter-in-users" class="m-2 p-2 border border-2 rounded">
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="search" name="name" class="m-1 form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+                        </div>
+                        <div class="col-4">
+                            <input type="search" name="dni" class="m-1 form-control form-control-sm" placeholder="DNI o fragmento">    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="search" name="email" class="m-1 form-control form-control-sm" placeholder="correo o fragmento">
+                        </div>
+                        <div class="col-6">
+                            <select name="role" class="m-1 form-select form-select-sm">
+                                <option value="">(ninguno)</option>
+                                <option value="admin">admin</option>
+                                <option value="alumno">alumno</option>
+                                <option value="profesor">profesor</option>
+                            </select>                
+                        </div>
+                    </div>
+                </div>
 
     <table class="table">
     <tr>

@@ -10,6 +10,8 @@
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador -->
     <title>CursoManager</title>
+
+    <script src="https://kit.fontawesome.com/dee2748eb0.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -106,6 +108,14 @@
 
     <!-- Todos los scripts de interaccion, aqui -->
     <script src="js/cursos.js" type="module"></script>
+
+    <script>
+        function resetFiltros(selNormal){
+            document.querySelectorAll(selNormal).forEach(o =>
+            o.value = ''
+            );
+        }
+    </script>
 </body>
 
 </html>

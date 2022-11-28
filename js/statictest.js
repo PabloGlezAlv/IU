@@ -46,6 +46,12 @@ E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition",
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#clean-filters-oneedition")
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser")
 
+E.userFilter()
+E.courseFilter()
+E.teacherFromEditionFilter()
+E.studentsFromEditionFilter()
+E.editionsFromStudentsFilter()
+
 // cosas que exponemos para poder usarlas desde la consola
 window.Cm = Cm;
 window.V = V;
