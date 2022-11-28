@@ -192,8 +192,33 @@ export function createCoursesTable(courses) {
             <input id="search-in-courses-input" type="search" class="form-control" placeholder="Filtrar" />
             <span class="input-group-text" id="search-in-users-button">🔍</span>
         </div>
+
+        <!--Boton para la busqueda avanzada de cursos-->
+        <div class="col">
+            <button id="search-advanced-toggle-courses" title="Búsqueda avanzada" class="adavance-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="clean-filters-courses" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-courses input, #filter-in-courses select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+        </div>
+
         <div class="col text-end">${botonNuevoCurso}</div>
     </div>
+
+    <!--Filtro para la busqueda avanzada de cursos-->
+                <div id="filter-in-courses" class="m-2 row p-2 border border-2 rounded">
+                    <input type="search" name="name" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+                    <select name="area" class="col-md-6 m-1 form-select form-select-sm">
+                        <option value="">(ninguno)</option>
+                        <option value="internet">internet</option>
+                        <option value="tec.informáticas">tec.informáticas</option>
+                        <option value="ofimática">ofimática</option>
+                    </select>
+                    <select name="nivel" class="col-md-6 m-1 form-select form-select-sm">
+                        <option value="">(ninguno)</option>
+                        <option value="iniciación">iniciación</option>
+                        <option value="generalista">generalista</option>
+                        <option value="especialización">especialización</option>
+                    </select>
+                    <input type="search" name="edicion" class="col-md-6 m-1  form-control form-control-sm" placeholder="edicion o fragmento">
+                </div>
 
     <table class="table">
     <tr>
@@ -267,8 +292,23 @@ export function createDetailsForEdition(edition) {
             <input id="search-in-teachers-input" type="search" class="form-control" placeholder="Filtrar" />
             <span class="input-group-text">🔍</span>
         </div>
+
+        <!--Boton para el filtro para profesores de un curso en concreto-->
+        <div class="col">
+            <button id="search-advanced-toggle-teachers-on-edition" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="clean-filters-oneedition2" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-oneedition2 input, #filter-in-oneedition2 select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+        </div>
+
         <div class="col text-end">${botonMatricula("profesor")}</div>
     </div>
+
+    <!--filtro para profesores de un curso en concreto-->
+    <div id="filter-in-oneedition2" class="m-2 row p-2 border border-2 rounded">
+        <input type="search" name="Nombre" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+        <input type="search" name="Correo" class="col-md-4 m-1 form-control form-control-sm" placeholder="Correo o fragmento">
+        <input type="search" name="DNI" class="col-md-6 m-1 form-control form-control-sm" placeholder="DNI o fragmento">
+    </div>
+
     <table class="table w-100 ml-4">
     <tr>
         <th>Nombre</th>
@@ -285,8 +325,24 @@ export function createDetailsForEdition(edition) {
             <input id="search-in-students-input" type="search" class="form-control" placeholder="Filtrar" />
             <span class="input-group-text">🔍</span>
         </div>
+
+        <!--Boton para el filtro para alumnos de un curso en concreto-->
+        <div class="col">
+            <button id="search-advanced-toggle-students-on-edition" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="clean-filters-oneedition" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-oneedition input, #filter-in-oneedition select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+        </div>
+
         <div class="col text-end">${botonMatricula("alumno")}</div>
     </div>
+
+    <!--Filtro para alumnos de un curso en concreto-->
+    <div id="filter-in-oneedition" class="m-2 row p-2 border border-2 rounded">
+        <input type="search" name="Nombre" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+        <input type="search" name="Correo" class="col-md-4 m-1 form-control form-control-sm" placeholder="Correo o fragmento">
+        <input type="search" name="DNI" class="col-md-6 m-1 form-control form-control-sm" placeholder="DNI o fragmento">
+        <input type="search" name="Nota" class="col-md-6 m-1 form-control form-control-sm" placeholder="Nota o fragmento">
+    </div>
+
     <table class="table w-100 ml-4">
     <tr>
         <th>Nombre</th>
@@ -358,7 +414,22 @@ export function createDetailsForUser(user) {
             <input id="search-in-user-editions-input" type="search" class="form-control" placeholder="Filtrar" />
             <span class="input-group-text">🔍</span>
         </div>
+
+        <!--Boton para el filtro para la pestaña ediciones donde participa un alumno-->
+        <div class="col">
+            <button id="search-advanced-toggle-editions" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="clean-filters-oneuser" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-oneuser input, #filter-in-oneuser select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+        </div>
     </div>
+
+    <!--Filtro para la pestaña ediciones donde participa un alumno-->
+    <div id="filter-in-oneuser" class="m-2 row p-2 border border-2 rounded">
+        <input type="search" name="edicion" class="col-md-8 m-1  form-control form-control-sm" name="" placeholder="Edición o fragmento">
+        <input type="search" name="global" class="col-md-4 m-1 form-control form-control-sm" placeholder="Valoración global o fragmento">
+        <input type="search" name="propia" class="col-md-6 m-1 form-control form-control-sm" placeholder="Valoración propia o fragmento">
+        <input type="search" name="nota" class="col-md-6 m-1 form-control form-control-sm" placeholder="Nota o fragmento">    
+    </div>
+
     <table class="table w-100">
     <tr>
         <th>Edición</th>
