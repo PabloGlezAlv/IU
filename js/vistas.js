@@ -82,7 +82,8 @@ export function createUserTable(users) {
         <!--Boton para el filtro de busqueda avanzada de usuarios-->
         <div class="col">
             <button id="search-advanced-toggle-users" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
-            <button id="clean-filters" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-users input, #filter-in-users select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+            <button id="clean-filters" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-users input, #filter-in-users select')" >
+            <i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
         </div>
         
         <div class="col text-end">${botonNuevoUsuario}</div>
