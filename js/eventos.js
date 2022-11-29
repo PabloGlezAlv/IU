@@ -28,6 +28,7 @@ export function bindDetails(clickSelector, detailsSelector, htmlGenerationFn, li
 
 
 export function bindRmFromEdition(clickSelector, callback) {
+
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
         const userId = e.target.closest('tr').dataset.userId;
         const editionId = e.target.closest('tr').dataset.editionId;
@@ -70,8 +71,7 @@ export function bindRmCourseRow(clickSelector) {
     }));
 }
 
-export function bindRmUserRow(clickSelector) {
-    U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
+export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
         const row = e.target.closest("tr");
         const id = row.dataset.id;
         console.log(e, id);
@@ -451,4 +451,16 @@ export function editionsFromStudentsFilter(){
         console.log("filtrando one user");
         advancedEditionsFromStudentsFilter("#filter-in-oneuser", ".user-edition-table-row");
     }));
+}
+
+function alerta()
+    {
+    var mensaje;
+    var opcion = confirm("Clicka en Aceptar o Cancelar");
+    if (opcion == true) {
+        mensaje = "Has clickado OK";
+	} else {
+	    mensaje = "Has clickado Cancelar";
+	}
+	document.getElementById("ejemplo").innerHTML = mensaje;
 }
