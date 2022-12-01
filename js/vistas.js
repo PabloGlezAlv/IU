@@ -44,8 +44,7 @@ function userRow(user, editions) {
     return `
     <tr data-id="${user.id}" class="user-table-row">
         <td>
-            <input type="checkbox" id="user" name="user" value="selected">
-            <label for="vehicle1"> Seleccionar </label><br>   
+            <input type="checkbox" class="rm-users-selected" value="${user.id}">
         </td>   
         <td>${user.name}</td>
         <td><span class="${roleClasses[user.role]}">${user.role}</span></td>
@@ -88,6 +87,11 @@ export function createUserTable(users) {
             <button id="search-advanced-toggle-users" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
             <button id="clean-filters" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-users input, #filter-in-users select')" >
             <i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
+        </div>
+
+        <!--Botón para borrar varios usuarios al mismo tiempo-->
+        <div class="col">
+            <button id="rm-checkbox" class="rm-checkbox-users btn btn-outline-secondary" onclick="rmCheckbox('#rm-users-selected')">Borrar seleccionados🗑️</button>
         </div>
         
         <div class="col text-end">${botonNuevoUsuario}</div>

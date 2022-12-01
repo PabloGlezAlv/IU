@@ -114,6 +114,20 @@
             );
         }
     </script>
+
+    <script>
+        //No tengo ni idea de lo que estoy haciendo xds
+        function rmCheckbox(sel){
+            document.querySelectorAll("#rm-users-selected checked=true").forEach(o => {
+                const row = o.target.closest("tr");
+                const id = row.dataset.id;
+                console.log(o, id);
+                Cm.rmUser(id);
+                row.remove();
+            });
+        
+        }
+    </script>
 </body>
 
 </html>
