@@ -11,6 +11,7 @@
     <!-- Esto aparece como título de la ventana o pestaña en el navegador -->
     <title>CursoManager</title>
     <script src="https://kit.fontawesome.com/dee2748eb0.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -118,6 +119,8 @@
     <script>
         //No tengo ni idea de lo que estoy haciendo xds
         function rmCheckbox(sel){
+            swal("Hello world!");
+            /*
             document.querySelectorAll("#rm-users-selected checked=true").forEach(o => {
                 const row = o.target.closest("tr");
                 const id = row.dataset.id;
@@ -125,6 +128,7 @@
                 Cm.rmUser(id);
                 row.remove();
             });
+            */
         
         }
     </script>

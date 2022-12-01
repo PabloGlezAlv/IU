@@ -30,6 +30,35 @@ export function bindDetails(clickSelector, detailsSelector, htmlGenerationFn, li
 export function bindRmFromEdition(clickSelector, callback) {
 
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
+        swal({
+            title: "¿Estás seguro?",
+            text: "Una vez borrado no podrás recuperar la información del estudiante sobre esta edición!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                swal("El estudiante ha sido borrado de la edición con éxito!", {
+                icon: "success",
+              });
+              const userId = e.target.closest('tr').dataset.userId;
+              const editionId = e.target.closest('tr').dataset.editionId;
+              console.log(e, userId, editionId);
+              const edition = Cm.resolve(editionId);
+              edition.students = edition.students.filter(o => o != userId);
+              edition.teachers = edition.students.filter(o => o != userId);
+              Cm.setEdition(edition);
+              e.target.closest("tr").remove();
+              callback();
+            } else {
+              swal("El estudiante no se ha borrado!");
+            }
+          });
+    }));
+
+    /*
+    U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
         var opcion = confirm("¿Estás seguro de que quieres borrar al usuario de esta edición?");
         if (opcon == true){
             const userId = e.target.closest('tr').dataset.userId;
@@ -43,17 +72,31 @@ export function bindRmFromEdition(clickSelector, callback) {
             callback();
         }
     }));
+    */
 }
 
 export function bindRmEditionDetails(clickSelector, callback) {
     U.one(clickSelector).addEventListener('click', e => {
-        var opcion = confirm("¿Estás seguro de que  quieres borrar esto?");
-        if (opcion == true){
-            const id = e.target.dataset.id;
-            console.log(e, id);
-            Cm.rmEdition(id);
-            callback();
-        }
+        swal({
+            title: "¿Estás seguro?",
+            text: "Una vez borrado no podrás recuperar la información sobre esta edición!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                swal("La edición ha sido borrada con éxito!", {
+                icon: "success",
+              });
+                const id = e.target.dataset.id;
+                console.log(e, id);
+                Cm.rmEdition(id);
+                callback();
+            } else {
+              swal("La edición no se ha borrado!");
+            }
+          });
     });
 }
 
@@ -69,27 +112,52 @@ export function bindAddEditionToCourse(clickSelector, callback) {
 
 export function bindRmCourseRow(clickSelector) {
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        var opcion = confirm("¿Estás seguro de que quieres borrar el curso? Se borrarán el curso, sus ediciones y las notas de los alumnos que la han cursado");
-        if (opcion == true){
-            const row = e.target.closest("tr");
-            const id = row.dataset.id;
-            console.log(e, id);
-            Cm.rmCourse(id);
-            row.remove();
-        }
+        swal({
+            title: "¿Estás seguro?",
+            text: "Una vez borrado no podrás recuperar la información sobre este curso!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                swal("El curso ha sido borrado con éxito!", {
+                icon: "success",
+              });
+                const row = e.target.closest("tr");
+                const id = row.dataset.id;
+                console.log(e, id);
+                Cm.rmCourse(id);
+                row.remove();
+            } else {
+              swal("El curso no se ha borrado!");
+            }
+          });
     }));
 }
 
 export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-    //Mostramos mensaje de confirmación de borrado
-    var opcion = confirm("¿Estás seguro de que quieres borrar al usuario? Se borrarán todos los datos relaciondos con este usuario");
-    if (opcion == true){
-        const row = e.target.closest("tr");
-        const id = row.dataset.id;
-        console.log(e, id);
-        Cm.rmUser(id);
-        row.remove();
-    }
+    swal({
+        title: "¿Estás seguro?",
+        text: "Una vez borrado el usuario no se podrá recuperar la información!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            swal("El estudiante ha sido borrado con éxito!", {
+            icon: "success",
+          });
+          const row = e.target.closest("tr");
+          const id = row.dataset.id;
+          console.log(e, id);
+          Cm.rmUser(id);
+          row.remove();
+        } else {
+          swal("El estudiante no se ha borrado!");
+        }
+      });
     }));
 }
 
