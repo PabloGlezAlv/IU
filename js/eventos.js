@@ -69,7 +69,7 @@ export function bindAddEditionToCourse(clickSelector, callback) {
 
 export function bindRmCourseRow(clickSelector) {
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        var opcion = confirm("¿Estás seguro de que quieres borrar el curso?");
+        var opcion = confirm("¿Estás seguro de que quieres borrar el curso? Se borrarán el curso, sus ediciones y las notas de los alumnos que la han cursado");
         if (opcion == true){
             const row = e.target.closest("tr");
             const id = row.dataset.id;
@@ -82,7 +82,7 @@ export function bindRmCourseRow(clickSelector) {
 
 export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
     //Mostramos mensaje de confirmación de borrado
-    var opcion = confirm("Estás seguro de que quieres borrar al usuario");
+    var opcion = confirm("¿Estás seguro de que quieres borrar al usuario? Se borrarán todos los datos relaciondos con este usuario");
     if (opcion == true){
         const row = e.target.closest("tr");
         const id = row.dataset.id;

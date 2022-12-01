@@ -43,6 +43,10 @@ function userRow(user, editions) {
     const docencia = editions.filter(o => o.teachers.indexOf(user.id) != -1)
     return `
     <tr data-id="${user.id}" class="user-table-row">
+        <td>
+            <input type="checkbox" id="user" name="user" value="selected">
+            <label for="vehicle1"> Seleccionar </label><br>   
+        </td>   
         <td>${user.name}</td>
         <td><span class="${roleClasses[user.role]}">${user.role}</span></td>
         <td>${user.email}</td>
@@ -116,6 +120,7 @@ export function createUserTable(users) {
 
     <table class="table">
     <tr>
+        <th>Chechbox</th>
         <th>Nombre</th>
         <th>Rol</th>
         <th>Correo</th>
@@ -451,6 +456,7 @@ export function prepareAddUserToEditionModal(edition, role) {
     return `
     <form class="row">
         <div class="col-md-auto">
+        
             <select class="form-select" name="dni" required>
                 ${options}
             </select>
