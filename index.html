@@ -7,6 +7,7 @@
 
     <!-- Normalmente accedes a un CDN; aquí uso una copia local. -->
     <link href="css/bootstrap-5.2.2.css" rel="stylesheet">
+    <lik rel="stylesheet" href="css/darkmode.css">  
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador -->
     <title>CursoManager</title>
@@ -36,8 +37,16 @@
                             <li><a class="dropdown-item" href="#">Profesor</a></li>
                             <li><a class="dropdown-item" href="#">Alumno</a></li>
                         </ul>
-                    </li>
+                    </li> 
                 </ul>
+                <div class="nav-item ms-auto">
+                    <div class="btn-group">
+                        <button id="save" class="btn btn-outline-secondary">💾</button>
+                        <button id="clean" class="btn btn-outline-secondary">🧽</button>
+                        <button id="restore" class="btn btn-outline-secondary">↩️</button>
+                        <button id="modooscuro" class="btn btn-outline-secondary" onclick="load("> <i class="fa-solid fa-circle-half-stroke"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -45,7 +54,7 @@
     <!-- Div principal; container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 ml-3">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="usuarios-tab" data-bs-toggle="tab" data-bs-target="#usuarios-tab-pane" type="button" role="tab" aria-controls="usuarios-tab-pane" aria-selected="true">👥 Usuarios</button>
@@ -117,21 +126,41 @@
     </script>
 
     <script>
-        //No tengo ni idea de lo que estoy haciendo xds
         function rmCheckbox(sel){
-            swal("Hello world!");
-            /*
-            document.querySelectorAll("#rm-users-selected checked=true").forEach(o => {
-                const row = o.target.closest("tr");
-                const id = row.dataset.id;
-                console.log(o, id);
-                Cm.rmUser(id);
-                row.remove();
-            });
-            */
-        
+            const boton = document.querySelector("#rm-checkbox-prueba");
+            const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
+            console.log(seleccionadas);
+            seleccionadas.forEach(s => Cm.rmUser(+s));
         }
     </script>
+
+    <script>
+        const bdark = document.querySelector('#modooscuro');
+        const body = document.querySelector('body');
+
+        load(); 
+        
+        bdark.addEventListener('click', e=> {
+            body.classList.toggle('darkmode');
+            store(body.classList.contains('darkmode'));
+        });
+
+        function load(){
+            const darkmode = localStorage.getItem('darkmode');
+
+            if(!darkmode){
+                store('false');
+            }
+            else if(darkmode == true){
+                body.classList.add('darkmode');
+            }
+        }
+
+        function store(value){
+            localStorage.setItem('darkmode', value);
+
+        }
+        </script>
 </body>
 
 </html>

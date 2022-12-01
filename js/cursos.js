@@ -89,6 +89,8 @@ function update() {
 
         E.bindSortColumn("tr>th");
 
+       
+
         E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users")
         E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
         E.userFilter()
@@ -108,6 +110,16 @@ function update() {
         E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#filter-in-oneuser")
         E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser")
         E.editionsFromStudentsFilter()
+
+        // asociamos botones de prueba para guardar y restaurar estado
+        U.one("#save").addEventListener('click', () => Cm.saveState());
+        U.one("#clean").addEventListener('click', () => localStorage.clear());
+        U.one("#restore").addEventListener('click', () => {
+            Cm.restoreState();
+            update()
+        });
+
+        E.bindCheckboxColumn("#users");
 
     } catch (e) {
         console.log('Error actualizando', e);
