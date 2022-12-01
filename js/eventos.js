@@ -30,24 +30,30 @@ export function bindDetails(clickSelector, detailsSelector, htmlGenerationFn, li
 export function bindRmFromEdition(clickSelector, callback) {
 
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        const userId = e.target.closest('tr').dataset.userId;
-        const editionId = e.target.closest('tr').dataset.editionId;
-        console.log(e, userId, editionId);
-        const edition = Cm.resolve(editionId);
-        edition.students = edition.students.filter(o => o != userId);
-        edition.teachers = edition.students.filter(o => o != userId);
-        Cm.setEdition(edition);
-        e.target.closest("tr").remove();
-        callback();
+        var opcion = confirm("¿Estás seguro de que quieres borrar al usuario de esta edición?");
+        if (opcon == true){
+            const userId = e.target.closest('tr').dataset.userId;
+            const editionId = e.target.closest('tr').dataset.editionId;
+            console.log(e, userId, editionId);
+            const edition = Cm.resolve(editionId);
+            edition.students = edition.students.filter(o => o != userId);
+            edition.teachers = edition.students.filter(o => o != userId);
+            Cm.setEdition(edition);
+            e.target.closest("tr").remove();
+            callback();
+        }
     }));
 }
 
 export function bindRmEditionDetails(clickSelector, callback) {
     U.one(clickSelector).addEventListener('click', e => {
-        const id = e.target.dataset.id;
-        console.log(e, id);
-        Cm.rmEdition(id);
-        callback();
+        var opcion = confirm("¿Estás seguro de que  quieres borrar esto?");
+        if (opcion == true){
+            const id = e.target.dataset.id;
+            console.log(e, id);
+            Cm.rmEdition(id);
+            callback();
+        }
     });
 }
 
@@ -63,20 +69,27 @@ export function bindAddEditionToCourse(clickSelector, callback) {
 
 export function bindRmCourseRow(clickSelector) {
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        const row = e.target.closest("tr");
-        const id = row.dataset.id;
-        console.log(e, id);
-        Cm.rmCourse(id);
-        row.remove();
+        var opcion = confirm("¿Estás seguro de que quieres borrar el curso?");
+        if (opcion == true){
+            const row = e.target.closest("tr");
+            const id = row.dataset.id;
+            console.log(e, id);
+            Cm.rmCourse(id);
+            row.remove();
+        }
     }));
 }
 
 export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
+    //Mostramos mensaje de confirmación de borrado
+    var opcion = confirm("Estás seguro de que quieres borrar al usuario");
+    if (opcion == true){
         const row = e.target.closest("tr");
         const id = row.dataset.id;
         console.log(e, id);
         Cm.rmUser(id);
         row.remove();
+    }
     }));
 }
 
