@@ -18,12 +18,7 @@
         body.darkmode{
             background-color: rgb(32,32,44);
             color: white;
-        } 
-
-        body.lightmode{
-            background-color: rgb(255, 255, 255);
-            color: rgb(0, 0, 0);
-        } 
+        }
     </style>
 </head>
 
@@ -137,14 +132,18 @@
         }
     </script>
 
+    <!--He movista la función a eventos
     <script>
         function rmCheckbox(sel){
             const boton = document.querySelector("#rm-checkbox-prueba");
             const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
             console.log(seleccionadas);
-            seleccionadas.forEach(s => Cm.rmUser(+s));
+            seleccionadas.forEach(s => {
+            Cm.rmUser(+s)
+            });
         }
     </script>
+    -->
 
     <script>
         const bdark = document.querySelector('#modooscuro');

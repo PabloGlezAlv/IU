@@ -41,6 +41,7 @@ function update() {
 
         E.bindRmCourseRow("#courses button.rm-fila")
         E.bindRmUserRow("#users button.rm-fila")
+        E.rmCheckbox("#rm-checkbox");
 
         E.bindAddEditionToCourse(".add-edition", () => update())
 

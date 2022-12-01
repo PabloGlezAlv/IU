@@ -614,3 +614,16 @@ function alerta()
 	}
 	document.getElementById("ejemplo").innerHTML = mensaje;
 }
+
+export function rmCheckbox(sel){
+    const boton = document.querySelector(sel);
+
+    boton.addEventListener('click', e=> {
+    const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
+    console.log(seleccionadas);
+    seleccionadas.forEach(s => {
+        const row = s.closest("tr");
+        Cm.rmUser(+s)
+    });
+    })
+}

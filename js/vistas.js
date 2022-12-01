@@ -43,7 +43,7 @@ function userRow(user, editions) {
     const docencia = editions.filter(o => o.teachers.indexOf(user.id) != -1)
     return `
     <tr data-id="${user.id}" class="user-table-row"> 
-        <th><input type="checkbox" name="toggle class="rm-checkbox-prueba value=${user.id}"/></td>
+        <th><input type="checkbox" name="toggle class="rm-checkbox-prueba value="${user.id}"/></td>
         <td>${user.name}</td>
         <td><span class="${roleClasses[user.role]}">${user.role}</span></td>
         <td>${user.email}</td>
@@ -89,7 +89,7 @@ export function createUserTable(users) {
 
         <!--Botón para borrar varios usuarios de una vez-->
         <div class="col">
-        <button id="rm-checkbox" class="rm-checkbox-users btn btn-outline-secondary" onclick="rmCheckbox()" >Borrar seleccionados 🗑️</button>
+        <button id="rm-checkbox" class="rm-checkbox-users btn btn-outline-secondary" >Borrar seleccionados 🗑️</button>
         </div>
         
         <div class="col text-end">${botonNuevoUsuario}</div>
