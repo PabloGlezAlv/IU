@@ -91,6 +91,11 @@ export function createUserTable(users) {
         <div class="col">
         <button id="rm-checkbox" class="rm-checkbox-users btn btn-outline-secondary" >Borrar seleccionados 🗑️</button>
         </div>
+
+        <!--Botón para matricular varios usuarios de una vez en una edición-->
+        <div class="col">
+        <button id="mat-checkbox" class="mat-checkbox-users btn btn-outline-secondary" >Matricular seleccionados</button>
+        </div>
         
         <div class="col text-end">${botonNuevoUsuario}</div>
     </div>

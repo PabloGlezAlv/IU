@@ -123,6 +123,7 @@ function update() {
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
         U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#rm-checkbox", () => update()));
+        U.one("#mat-checkbox").addEventListener('click', () => E.matCheckbox("#users", () => update()));
 
     } catch (e) {
         console.log('Error actualizando', e);

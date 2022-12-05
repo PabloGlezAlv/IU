@@ -39,9 +39,6 @@ export function bindRmFromEdition(clickSelector, callback) {
           })
           .then((willDelete) => {
             if (willDelete) {
-                swal("El estudiante ha sido borrado de la edición con éxito!", {
-                icon: "success",
-              });
               const userId = e.target.closest('tr').dataset.userId;
               const editionId = e.target.closest('tr').dataset.editionId;
               console.log(e, userId, editionId);
@@ -51,8 +48,6 @@ export function bindRmFromEdition(clickSelector, callback) {
               Cm.setEdition(edition);
               e.target.closest("tr").remove();
               callback();
-            } else {
-              swal("El estudiante no se ha borrado!");
             }
           });
     }));
@@ -86,15 +81,10 @@ export function bindRmEditionDetails(clickSelector, callback) {
           })
           .then((willDelete) => {
             if (willDelete) {
-                swal("La edición ha sido borrada con éxito!", {
-                icon: "success",
-              });
                 const id = e.target.dataset.id;
                 console.log(e, id);
                 Cm.rmEdition(id);
                 callback();
-            } else {
-              swal("La edición no se ha borrado!");
             }
           });
     });
@@ -121,16 +111,11 @@ export function bindRmCourseRow(clickSelector) {
           })
           .then((willDelete) => {
             if (willDelete) {
-                swal("El curso ha sido borrado con éxito!", {
-                icon: "success",
-              });
                 const row = e.target.closest("tr");
                 const id = row.dataset.id;
                 console.log(e, id);
                 Cm.rmCourse(id);
                 row.remove();
-            } else {
-              swal("El curso no se ha borrado!");
             }
           });
     }));
@@ -146,17 +131,18 @@ export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o =>
       })
       .then((willDelete) => {
         if (willDelete) {
-            swal("El estudiante ha sido borrado con éxito!", {
-            icon: "success",
-          });
+           // swal("El estudiante ha sido borrado con éxito!", {
+           // icon: "success",
+          //});
           const row = e.target.closest("tr");
           const id = row.dataset.id;
           console.log(e, id);
           Cm.rmUser(id);
           row.remove();
-        } else {
+        } 
+        /*else {
           swal("El estudiante no se ha borrado!");
-        }
+        }*/
       });
     }));
 }
@@ -634,6 +620,18 @@ export function rmCheckboxPrueba(sel, callback){
     const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
     console.log(seleccionadas);
     seleccionadas.forEach(s => {
+        Cm.rmUser(+s);
+        
+    });
+    callback();
+}
+
+export function matCheckbox(sel, callback){
+    const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
+    console.log(seleccionadas);
+    seleccionadas.forEach(s => {
+        //Matricular a cada alumnos con check
+        
         Cm.rmUser(+s);
         
     });
