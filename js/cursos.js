@@ -41,7 +41,7 @@ function update() {
 
         E.bindRmCourseRow("#courses button.rm-fila")
         E.bindRmUserRow("#users button.rm-fila")
-        E.rmCheckbox("#rm-checkbox");
+        //E.rmCheckbox("#rm-checkbox");
 
         E.bindAddEditionToCourse(".add-edition", () => update())
 
@@ -121,6 +121,9 @@ function update() {
         });
 
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
+
+        U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#rm-checkbox", () => update()));
+
     } catch (e) {
         console.log('Error actualizando', e);
     }

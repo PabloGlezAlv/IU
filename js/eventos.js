@@ -615,6 +615,7 @@ function alerta()
 	document.getElementById("ejemplo").innerHTML = mensaje;
 }
 
+/*Función antigua, pero la de abajo debería funcionar del todo
 export function rmCheckbox(sel){
     const boton = document.querySelector(sel);
 
@@ -626,4 +627,15 @@ export function rmCheckbox(sel){
         
     });
     })
+}
+*/
+
+export function rmCheckboxPrueba(sel, callback){
+    const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
+    console.log(seleccionadas);
+    seleccionadas.forEach(s => {
+        Cm.rmUser(+s);
+        
+    });
+    callback();
 }
