@@ -617,7 +617,7 @@ export function rmCheckbox(sel){
 */
 
 export function rmCheckboxPrueba(sel, callback){
-    const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
+    const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
     console.log(seleccionadas);
     seleccionadas.forEach(s => {
         Cm.rmUser(+s);
@@ -630,9 +630,7 @@ export function matCheckbox(sel, callback){
     const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
     console.log(seleccionadas);
     seleccionadas.forEach(s => {
-        //Matricular a cada alumnos con check
-        
-        Cm.rmUser(+s);
+        //matricular a s en la edición
         
     });
     callback();
