@@ -622,7 +622,8 @@ export function rmCheckbox(sel){
     const seleccionadas = document.querySelector("#users").dataset.selected.split(",");
     console.log(seleccionadas);
     seleccionadas.forEach(s => {
-        Cm.rmUser(+s)
+        Cm.rmUser(+s);
+        
     });
     })
 }
