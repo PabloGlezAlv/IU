@@ -147,6 +147,7 @@ export function isValidDni(dni) {
     if (!/^[0-9]{8}[A-Z]$/.test(dni)) {
         return false;
     }
+    
     return generateDni(dni.substring(0, 8)) == dni
 }
 

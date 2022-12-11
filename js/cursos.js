@@ -120,6 +120,8 @@ function update() {
             update()
         });
 
+       //U.one("#escapeHatch").addEventListener('click', () => update());
+
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
         U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#users", () => update()));

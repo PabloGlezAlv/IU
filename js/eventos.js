@@ -242,8 +242,11 @@ export function bindAddOrEditUser(clickSelector, formTitleSelector, formSelector
         const acceptListener = ae => {
             const dniInput = form.querySelector("input[name=dni]");
 
-            dniInput.setCustomValidity(U.isValidDni(dniInput.value) ?
+            dniInput.setCustomValidity((U.isValidDni(dniInput.value)) ?
                 "" : "DNI inválido");
+
+            //dniInput.setCustomValidity(dniNotRepeted(Cm.getUsers({ dni }), dniInput) ?
+            //    "" : "DNI inválido");
 
             console.log(dniInput, dniInput.value, U.generateDni(dniInput.value.substring(0, 8)));
             if (form.checkValidity()) {
@@ -696,4 +699,20 @@ export function matCheckbox(sel, callback){
         
     });
     callback();
+}
+
+function dniNotRepeted(listaDni, dniNuevo){
+    var noRepetido = new Boolean(true);
+    for (let r in listaDni){
+        if (r == dniNuevo){
+            repetido = false;
+        }
+    }
+    
+    if (noRepetido == true){
+        return generateDni(dni.substring(0, 8)) == dniNuevo;
+    }
+    else{
+        return false;
+    }
 }
