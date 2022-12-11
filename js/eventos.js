@@ -30,7 +30,7 @@ export function bindDetails(clickSelector, detailsSelector, htmlGenerationFn, li
 export function bindRmFromEdition(clickSelector, callback) {
 
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        swal({
+        Swal.fire({
             title: "¿Estás seguro?",
             text: "Una vez borrado no podrás recuperar la información del estudiante sobre esta edición!",
             icon: "warning",
@@ -48,6 +48,16 @@ export function bindRmFromEdition(clickSelector, callback) {
               Cm.setEdition(edition);
               e.target.closest("tr").remove();
               callback();
+
+              Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'success',
+                title: 'Se ha borrado correctamente',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              })
             }
           });
     }));
@@ -85,7 +95,16 @@ export function bindRmEditionDetails(clickSelector, callback) {
                 console.log(e, id);
                 Cm.rmEdition(id);
                 callback();
-            }
+            
+                Swal.fire({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Se ha borrado la información del usuario correctamente',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                  })}
           });
     });
 }
@@ -102,7 +121,7 @@ export function bindAddEditionToCourse(clickSelector, callback) {
 
 export function bindRmCourseRow(clickSelector) {
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        swal({
+        Swal.fire({
             title: "¿Estás seguro?",
             text: "Una vez borrado no podrás recuperar la información sobre este curso!",
             icon: "warning",
@@ -116,13 +135,24 @@ export function bindRmCourseRow(clickSelector) {
                 console.log(e, id);
                 Cm.rmCourse(id);
                 row.remove();
+
+                Swal.fire({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Se ha borrado el curso correctamente',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                  })
             }
           });
     }));
 }
 
-export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-    swal({
+export function bindRmUserRow(clickSelector) { 
+    U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
+    Swal.fire({
         title: "¿Estás seguro?",
         text: "Una vez borrado el usuario no se podrá recuperar la información!",
         icon: "warning",
@@ -139,6 +169,17 @@ export function bindRmUserRow(clickSelector) { U.all(clickSelector).forEach(o =>
           console.log(e, id);
           Cm.rmUser(id);
           row.remove();
+
+          Swal.fire({
+            toast: true,
+            position: 'bottom-end',
+            icon: 'success',
+            title: 'Se ha borrado el usuario correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+          })
+          
         } 
         /*else {
           swal("El estudiante no se ha borrado!");
