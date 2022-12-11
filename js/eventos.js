@@ -82,7 +82,7 @@ export function bindRmFromEdition(clickSelector, callback) {
 
 export function bindRmEditionDetails(clickSelector, callback) {
     U.one(clickSelector).addEventListener('click', e => {
-        swal({
+        Swal.fire({
             title: "¿Estás seguro?",
             text: "Una vez borrado no podrás recuperar la información sobre esta edición!",
             icon: "warning",
@@ -658,13 +658,34 @@ export function rmCheckbox(sel){
 */
 
 export function rmCheckboxPrueba(sel, callback){
-    const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
-    console.log(seleccionadas);
-    seleccionadas.forEach(s => {
-        Cm.rmUser(+s);
-        
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Una vez borrado no podrás recuperar la información del estudiante sobre esta edición!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
+            console.log(seleccionadas);
+            seleccionadas.forEach(s => {
+                Cm.rmUser(+s);
+                
+            });
+            callback();
+
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'success',
+                title: 'Se ha borrado correctamente',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+            })
+        }
     });
-    callback();
 }
 
 export function matCheckbox(sel, callback){
