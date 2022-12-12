@@ -27,7 +27,9 @@ import * as U from './util.js'
 //
 // Función que refresca toda la interfaz. Debería llamarse tras cada operación
 //
-function update() {
+
+//0 - admin, 1 - profesor, 2 - alumno
+function update_rol(rol) {
     try {
         // vaciamos los contenedores
         U.clean("#users");
@@ -42,14 +44,14 @@ function update() {
         E.bindRmCourseRow("#courses button.rm-fila")
         E.bindRmUserRow("#users button.rm-fila")
         //E.rmCheckbox("#rm-checkbox");
-
-        E.bindAddEditionToCourse(".add-edition", () => update())
+        
+        E.bindAddEditionToCourse(".add-edition", () => update_rol(rol))
 
         E.bindDetails("#courses .edition-link", "#details",
             (id) => V.createDetailsForEdition(Cm.resolve(id)),
             (id) => {
                 const edition = Cm.resolve(id);
-                E.bindRmEditionDetails(".rm-edition", update);
+                E.bindRmEditionDetails(".rm-edition", update_rol);
                 E.bindAddUserToEdition(".add-profesor-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo profesor a <i>${edition.name}</i>`,
@@ -60,27 +62,27 @@ function update() {
                     () => `Añadiendo alumno a <i>${edition.name}</i>`,
                     () => V.prepareAddUserToEditionModal(edition, Cm.UserRole.STUDENT),
                     () => U.one(`#d${id}`).click());
-                update();
+                update_rol(rol);
             });
         E.bindDetails("#users .edition-link", '#details',
             (id) => V.createDetailsForUser(Cm.resolve(id)),
             (id) => {
                 E.bindSetResults(".set-result", () => U.one(`#d${id}`).click());
-                update();
+                update_rol(rol);
             }
         )
-        E.bindRmFromEdition(".rm-from-edition", () => update());
+        E.bindRmFromEdition(".rm-from-edition", () => update_rol(rol));
 
         E.bindAddOrEditUser(".add-user,.set-user",
             "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
             (user) => user ? `Editando <i>${user.name}</i>` : "Añadiendo usuario",
             (user) => V.prepareAddOrEditUserModal(user),
-            () => update());
+            () => update_rol(rol));
         E.bindAddOrEditCourse(".add-course,.set-course",
             "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
             (course) => course ? `Editando <i>${course.name}</i>` : "Añadiendo curso",
             (course) => V.prepareAddOrEditCourseModal(course),
-            () => update());
+            () => update_rol(rol));
 
         E.bindSearch("#search-in-users-input", ".user-table-row");
         E.bindSearch("#search-in-courses-input", ".course-table-row");
@@ -117,15 +119,19 @@ function update() {
         U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
-            update()
+            update_rol(rol)
         });
 
-       //U.one("#escapeHatch").addEventListener('click', () => update());
+       //U.one("#escapeHatch").addEventListener('click', () => update_rol(rol));
 
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
-        U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#users", () => update()));
-        U.one("#mat-checkbox").addEventListener('click', () => E.matCheckbox("#users", () => update()));
+        U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#users", () => update_rol(rol)));
+        U.one("#mat-checkbox").addEventListener('click', () => E.matCheckbox("#users", () => update_rol(rol)));
+
+        U.one("#adminButton").addEventListener('click', () => update_rol(0))
+        U.one("#teacherButton").addEventListener('click', () => update_rol(1))
+        U.one("#studentButton").addEventListener('click', () => update_rol(2))
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -139,10 +145,10 @@ function update() {
 const modalEdit = new bootstrap.Modal(document.querySelector('#cmModal'));
 
 Cm.init()
-update()
+update_rol(0)
 
 // cosas que exponemos para poder usarlas desde la consola
-window.update = update;
+window.update_rol = update_rol;
 window.Cm = Cm;
 window.V = V;
 window.E = E;
