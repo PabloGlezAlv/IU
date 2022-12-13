@@ -88,8 +88,6 @@ export function createUserTable(users) {
         <div class="col">
         <button id="mat-checkbox" class="mat-checkbox-users btn btn-outline-secondary" >Matricular seleccionados</button>
         </div>
-        
-        <div class="col text-end">${botonNuevoUsuario}</div>
     </div>
 
     <!--Filtro de busqueda avanzada de usuarios-->
