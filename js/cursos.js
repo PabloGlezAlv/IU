@@ -68,7 +68,7 @@ function update() {
         E.bindDetails("#users .edition-link", '#details',
             (id) => V.createDetailsForUser(Cm.resolve(id)),
             (id) => {
-                E.bindSetResults(".set-result", () => U.one(`#d${id}`).click());
+                E.bindSetResults(".set-result", 3, () => U.one(`#d${id}`).click());
                 update();
             }
         )
@@ -177,7 +177,7 @@ function updateProfesor() {
         E.bindDetails("#users .edition-link", '#details',
             (id) => P.createDetailsForUser(Cm.resolve(id)),
             (id) => {
-                E.bindSetResults(".set-result", () => U.one(`#d${id}`).click());
+                E.bindSetResults(".set-result", 2, () => U.one(`#d${id}`).click());
                 updateProfesor();
             }
         )
@@ -288,7 +288,7 @@ function updateAlumno() {
         E.bindDetails("#users .edition-link", '#details',
             (id) => A.createDetailsForUser(Cm.resolve(id)),
             (id) => {
-                E.bindSetResults(".set-result", () => U.one(`#d${id}`).click());
+                E.bindSetResults(".set-result", 1, () => U.one(`#d${id}`).click());
                 updateAlumno();
             }
         )

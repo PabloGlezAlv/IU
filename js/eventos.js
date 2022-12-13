@@ -399,45 +399,98 @@ function stopEditingPreviousResults(callback) {
     if (evtName) table.addEventListener(evtName, e => console.log(e.detail));
 }
 
-export function bindSetResults(clickSelector, callback) {
+export function bindSetResults(clickSelector, option, callback) {
     U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
         const row = e.target.closest("tr");
 
-        const ratingCell = row.querySelector(".ed-rating");
-        let ratingValue = ratingCell.innerText;
-        ratingCell.innerHTML = `
-        <select class="form-select" id='rating-select'>
-            <option value="1" ${ratingValue == 1 ? "selected" : ""}>⭐</option>
-            <option value="2" ${ratingValue == 2 ? "selected" : ""}>⭐⭐</option>
-            <option value="3" ${ratingValue == 3 ? "selected" : ""}>⭐⭐⭐</option>
-            <option value="4" ${ratingValue == 4 ? "selected" : ""}>⭐⭐⭐⭐</option>
-            <option value="5" ${ratingValue == 5 ? "selected" : ""}>⭐⭐⭐⭐⭐</option>
-        </select>
-        `;
+        if (option == 1){
+            const ratingCell = row.querySelector(".ed-rating");
+            let ratingValue = ratingCell.innerText;
+            ratingCell.innerHTML = `
+            <select class="form-select" id='rating-select'>
+                <option value="1" ${ratingValue == 1 ? "selected" : ""}>⭐</option>
+                <option value="2" ${ratingValue == 2 ? "selected" : ""}>⭐⭐</option>
+                <option value="3" ${ratingValue == 3 ? "selected" : ""}>⭐⭐⭐</option>
+                <option value="4" ${ratingValue == 4 ? "selected" : ""}>⭐⭐⭐⭐</option>
+                <option value="5" ${ratingValue == 5 ? "selected" : ""}>⭐⭐⭐⭐⭐</option>
+            </select>
+            `;
 
-        const gradeCell = row.querySelector(".ed-grade");
-        let gradeValue = gradeCell.innerText;
-        gradeCell.innerHTML = `
-        <input class="form-input" id='grade-input' 
-            size="3" type="number" value="${gradeValue == '?' ? "" : gradeValue}"/>
-        `;
+            // handle lost focus
+            row.querySelectorAll("select,input").forEach(e => e.addEventListener("blur",
+                () => stopEditingPreviousResults(callback)));
 
-        // handle lost focus
-        row.querySelectorAll("select,input").forEach(e => e.addEventListener("blur",
-            () => stopEditingPreviousResults(callback)));
+            // handle a change
+            row.querySelectorAll("select,input").forEach(e => e.addEventListener("input", ae => {
+                const rating = U.one("#rating-select").value || null;
+                const result = new Cm.Result(-1,
+                    row.dataset.editionId,
+                    row.dataset.studentId,
+                    row.dataset.grade,
+                    rating
+                )
+                Cm.setResult(result);
+            }));
+        }else if (option == 2){
+            const gradeCell = row.querySelector(".ed-grade");
+            let gradeValue = gradeCell.innerText;
+            gradeCell.innerHTML = `
+            <input class="form-input" id='grade-input' 
+                size="3" type="number" value="${gradeValue == '?' ? "" : gradeValue}"/>
+            `;
 
-        // handle a change
-        row.querySelectorAll("select,input").forEach(e => e.addEventListener("input", ae => {
-            const grade = U.one("#grade-input").value || null;
-            const rating = U.one("#rating-select").value || null;
-            const result = new Cm.Result(-1,
-                row.dataset.editionId,
-                row.dataset.studentId,
-                grade,
-                rating
-            )
-            Cm.setResult(result);
-        }));
+            // handle lost focus
+            row.querySelectorAll("select,input").forEach(e => e.addEventListener("blur",
+                () => stopEditingPreviousResults(callback)));
+
+            // handle a change
+            row.querySelectorAll("select,input").forEach(e => e.addEventListener("input", ae => {
+                const grade = U.one("#grade-input").value || null;
+                const result = new Cm.Result(-1,
+                    row.dataset.editionId,
+                    row.dataset.studentId,
+                    grade,
+                    row.dataset.rating
+                )
+                Cm.setResult(result);
+            }));
+        }else{
+            const ratingCell = row.querySelector(".ed-rating");
+            let ratingValue = ratingCell.innerText;
+            ratingCell.innerHTML = `
+            <select class="form-select" id='rating-select'>
+                <option value="1" ${ratingValue == 1 ? "selected" : ""}>⭐</option>
+                <option value="2" ${ratingValue == 2 ? "selected" : ""}>⭐⭐</option>
+                <option value="3" ${ratingValue == 3 ? "selected" : ""}>⭐⭐⭐</option>
+                <option value="4" ${ratingValue == 4 ? "selected" : ""}>⭐⭐⭐⭐</option>
+                <option value="5" ${ratingValue == 5 ? "selected" : ""}>⭐⭐⭐⭐⭐</option>
+            </select>
+            `;
+
+            const gradeCell = row.querySelector(".ed-grade");
+            let gradeValue = gradeCell.innerText;
+            gradeCell.innerHTML = `
+            <input class="form-input" id='grade-input' 
+                size="3" type="number" value="${gradeValue == '?' ? "" : gradeValue}"/>
+            `;
+
+            // handle lost focus
+            row.querySelectorAll("select,input").forEach(e => e.addEventListener("blur",
+                () => stopEditingPreviousResults(callback)));
+
+            // handle a change
+            row.querySelectorAll("select,input").forEach(e => e.addEventListener("input", ae => {
+                const grade = U.one("#grade-input").value || null;
+                const rating = U.one("#rating-select").value || null;
+                const result = new Cm.Result(-1,
+                    row.dataset.editionId,
+                    row.dataset.studentId,
+                    grade,
+                    rating
+                )
+                Cm.setResult(result);
+            }));
+        }
     }));
 }
 
