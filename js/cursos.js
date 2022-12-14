@@ -133,7 +133,6 @@ function update() {
         U.one("#teacherButton").addEventListener('click', () => updateProfesor());
         U.one("#studentButton").addEventListener('click', () => updateAlumno());
 
-        
 
     } catch (e) {
         console.log('Error actualizando', e);
