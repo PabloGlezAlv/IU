@@ -116,7 +116,7 @@ function update() {
         // asociamos botones de prueba para guardar y restaurar estado
         U.one("#save").addEventListener('click', () => Cm.saveState());
         U.one("#print").addEventListener('click', () => E.printAll(() => update()));
-        U.one("#clean").addEventListener('click', () => localStorage.clear());
+        //U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
             update()
@@ -226,7 +226,7 @@ function updateProfesor() {
         // asociamos botones de prueba para guardar y restaurar estado
         U.one("#save").addEventListener('click', () => Cm.saveState());
         U.one("#print").addEventListener('click', () => E.printAll(() => updateProfesor()));
-        U.one("#clean").addEventListener('click', () => localStorage.clear());
+        //U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
             updateProfesor()
@@ -336,7 +336,7 @@ function updateAlumno() {
         // asociamos botones de prueba para guardar y restaurar estado
         U.one("#save").addEventListener('click', () => Cm.saveState());
         U.one("#print").addEventListener('click', () => E.printAll(() => updateAlumno()));
-        U.one("#clean").addEventListener('click', () => localStorage.clear());
+        //U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
             updateAlumno()
