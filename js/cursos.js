@@ -56,12 +56,12 @@ function update() {
                 E.bindAddUserToEdition(".add-profesor-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo profesor a <i>${edition.name}</i>`,
-                    () => V.prepareAddUserToEditionModal(edition, Cm.UserRole.TEACHER),
+                    () => V.prepareAddUserToEditionModal(edition, Cm.Usere.TEACHER),
                     () => U.one(`#d${id}`).click());
                 E.bindAddUserToEdition(".add-alumno-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo alumno a <i>${edition.name}</i>`,
-                    () => V.prepareAddUserToEditionModal(edition, Cm.UserRole.STUDENT),
+                    () => V.prepareAddUserToEditionModal(edition, Cm.Usere.STUDENT),
                     () => U.one(`#d${id}`).click());
                 update();
             });
@@ -93,29 +93,30 @@ function update() {
 
         E.bindSortColumn("tr>th");
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters");
-        E.userFilter();
+       
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#filter-in-courses");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#clean-filters-courses");
-        E.courseFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
+        E.userFilter()
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#filter-in-oneedition2");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#clean-filters-oneedition2");
-        E.teacherFromEditionFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#filter-in-courses")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#clean-filters-courses")
+        E.courseFilter()
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#filter-in-oneedition");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#clean-filters-oneedition");
-        E.studentsFromEditionFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#filter-in-oneedition2")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#clean-filters-oneedition2")
+        E.teacherFromEditionFilter()
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#filter-in-oneuser");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser");
-        E.editionsFromStudentsFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#filter-in-oneedition")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#clean-filters-oneedition")
+        E.studentsFromEditionFilter()
+
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#filter-in-oneuser")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser")
+        E.editionsFromStudentsFilter()
 
         // asociamos botones de prueba para guardar y restaurar estado
         U.one("#save").addEventListener('click', () => Cm.saveState());
-        U.one("#print").addEventListener('click', () => E.printAll(() => update()));
         U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
@@ -129,11 +130,9 @@ function update() {
         U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#users", () => update()));
         U.one("#mat-checkbox").addEventListener('click', () => E.matCheckbox("#users", () => update()));
 
-        U.one("#adminButton").addEventListener('click', () => update());
-        U.one("#teacherButton").addEventListener('click', () => updateProfesor());
-        U.one("#studentButton").addEventListener('click', () => updateAlumno());
-
-        
+        U.one("#adminButton").addEventListener('click', () => update())
+        U.one("#teacherButton").addEventListener('click', () => updateProfesor())
+        U.one("#studentButton").addEventListener('click', () => updateAlumno())
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -162,18 +161,18 @@ function updateProfesor() {
             (id) => P.createDetailsForEdition(Cm.resolve(id)),
             (id) => {
                 const edition = Cm.resolve(id);
-                /*E.bindRmEditionDetails(".rm-edition", updateProfesor);
+                E.bindRmEditionDetails(".rm-edition", updateProfesor);
                 E.bindAddUserToEdition(".add-profesor-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo profesor a <i>${edition.name}</i>`,
-                    () => P.prepareAddUserToEditionModal(edition, Cm.UserRole.TEACHER),
+                    () => P.prepareAddUserToEditionModal(edition, Cm.Usere.TEACHER),
                     () => U.one(`#d${id}`).click());
                 E.bindAddUserToEdition(".add-alumno-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo alumno a <i>${edition.name}</i>`,
-                    () => P.prepareAddUserToEditionModal(edition, Cm.UserRole.STUDENT),
+                    () => P.prepareAddUserToEditionModal(edition, Cm.Usere.STUDENT),
                     () => U.one(`#d${id}`).click());
-                updateProfesor();*/
+                updateProfesor();
             });
         E.bindDetails("#users .edition-link", '#details',
             (id) => P.createDetailsForUser(Cm.resolve(id)),
@@ -203,29 +202,30 @@ function updateProfesor() {
 
         E.bindSortColumn("tr>th");
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters");
-        E.userFilter();
+       
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#filter-in-courses");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#clean-filters-courses");
-        E.courseFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
+        E.userFilter()
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#filter-in-oneedition2");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#clean-filters-oneedition2");
-        E.teacherFromEditionFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#filter-in-courses")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-courses", "#search-in-courses-input", "#clean-filters-courses")
+        E.courseFilter()
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#filter-in-oneedition");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#clean-filters-oneedition");
-        E.studentsFromEditionFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#filter-in-oneedition2")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-teachers-on-edition", "#search-in-teachers-input", "#clean-filters-oneedition2")
+        E.teacherFromEditionFilter()
 
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#filter-in-oneuser");
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser");
-        E.editionsFromStudentsFilter();
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#filter-in-oneedition")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-students-on-edition", "#search-in-students-input", "#clean-filters-oneedition")
+        E.studentsFromEditionFilter()
+
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#filter-in-oneuser")
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-editions", "#search-in-user-editions-input", "#clean-filters-oneuser")
+        E.editionsFromStudentsFilter()
 
         // asociamos botones de prueba para guardar y restaurar estado
         U.one("#save").addEventListener('click', () => Cm.saveState());
-        U.one("#print").addEventListener('click', () => E.printAll(() => updateProfesor()));
         U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
@@ -275,12 +275,12 @@ function updateAlumno() {
                 E.bindAddUserToEdition(".add-profesor-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo profesor a <i>${edition.name}</i>`,
-                    () => A.prepareAddUserToEditionModal(edition, Cm.UserRole.TEACHER),
+                    () => A.prepareAddUserToEditionModal(edition, Cm.Usere.TEACHER),
                     () => U.one(`#d${id}`).click());
                 E.bindAddUserToEdition(".add-alumno-to-edition",
                     "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
                     () => `Añadiendo alumno a <i>${edition.name}</i>`,
-                    () => A.prepareAddUserToEditionModal(edition, Cm.UserRole.STUDENT),
+                    () => A.prepareAddUserToEditionModal(edition, Cm.Usere.STUDENT),
                     () => U.one(`#d${id}`).click());
                 updateAlumno();
             });
@@ -313,6 +313,8 @@ function updateAlumno() {
 
         E.bindSortColumn("tr>th");
 
+       
+
         E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#filter-in-users")
         E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle-users", "#search-in-users-input", "#clean-filters")
         E.userFilter()
@@ -335,7 +337,6 @@ function updateAlumno() {
 
         // asociamos botones de prueba para guardar y restaurar estado
         U.one("#save").addEventListener('click', () => Cm.saveState());
-        U.one("#print").addEventListener('click', () => E.printAll(() => updateAlumno()));
         U.one("#clean").addEventListener('click', () => localStorage.clear());
         U.one("#restore").addEventListener('click', () => {
             Cm.restoreState();
@@ -346,8 +347,8 @@ function updateAlumno() {
 
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
-        U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#users", () => updateAlumno()));
-        U.one("#mat-checkbox").addEventListener('click', () => E.matCheckbox("#users", () => updateAlumno()));
+        U.one("#rm-checkbox").addEventListener('click', () => E.rmCheckboxPrueba("#users", () => update()));
+        U.one("#mat-checkbox").addEventListener('click', () => E.matCheckbox("#users", () => update()));
 
         U.one("#adminButton").addEventListener('click', () => update())
         U.one("#teacherButton").addEventListener('click', () => updateProfesor())
