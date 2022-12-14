@@ -548,7 +548,7 @@ export function advancedUserFilter(filterSel, rowSel) {
     for (let r of document.querySelectorAll(rowSel)) {
         let ok = true;
         for (let [f, col] of 
-            [[name, 0], [role, 1], [email, 2], [dni, 3]]) {
+            [[name, 1], [role, 2], [email, 3], [dni, 4]]) {
                 if (f == '' || ! ok) continue;
                 const v = valueAt(r, col).toLowerCase();
                 console.log(v, f, col, v.indexOf(f));
@@ -749,6 +749,7 @@ export function matCheckbox(sel, callback){
     console.log(seleccionadas);
     seleccionadas.forEach(s => {
         //matricular a s en la edición
+        modalFn().show();
         
     });
     callback();

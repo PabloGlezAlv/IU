@@ -50,7 +50,7 @@
                 <div class="nav-item ms-auto">
                     <div class="btn-group">
                         <button id="save" class="btn btn-outline-secondary">💾</button>
-                        <button id="clean" class="btn btn-outline-secondary">🧽</button>
+                        <!--<button id="clean" class="btn btn-outline-secondary">🧽</button>-->
                         <button id="restore" class="btn btn-outline-secondary">↩️</button>
                         <button id="modooscuro" class="btn btn-outline-secondary"> <i class="fa-solid fa-circle-half-stroke"></i></button>
                     </div>
@@ -86,7 +86,6 @@
             </div>
             <div class="col-md-6">
                 <div id="details" class="overflow-scroll vh-100">
-
                 </div>
             </div>
         </div>
@@ -130,7 +129,7 @@
         function resetFiltros(selNormal){
             document.querySelectorAll(selNormal).forEach(o =>
             o.value = ''
-            );
+            ); 
         }
     </script>
 
@@ -171,9 +170,8 @@
 
         function store(value){
             localStorage.setItem('darkmode', value);
-
         }
-        </script>
+    </script>
 </body>
 
 </html>
