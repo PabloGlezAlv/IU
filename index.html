@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
 
     <!-- Normalmente accedes a un CDN; aquí uso una copia local. -->
     <link href="css/bootstrap-5.2.2.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/darkmode.css">  
+    <link href="css/darkmode.css" rel="stylesheet">  
     <link rel="stylesheet" href="css/toast.css">
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador -->
@@ -15,12 +15,7 @@
     <script src="https://kit.fontawesome.com/dee2748eb0.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <style>
-        body.darkmode{
-            background-color: rgb(32,32,44);
-            color: white;
-        }
-    </style>
+   
 </head>
 
 <body>
@@ -50,8 +45,9 @@
                 <div class="nav-item ms-auto">
                     <div class="btn-group">
                         <button id="save" class="btn btn-outline-secondary">💾</button>
-                        <button id="clean" class="btn btn-outline-secondary">🧽</button>
+                        <!--<button id="clean" class="btn btn-outline-secondary">🧽</button>-->
                         <button id="restore" class="btn btn-outline-secondary">↩️</button>
+                        <button id="print" class="btn btn-outline-secondary"><i class="fa-solid fa-print"></i></button>
                         <button id="modooscuro" class="btn btn-outline-secondary"> <i class="fa-solid fa-circle-half-stroke"></i></button>
                     </div>
                 </div>
@@ -86,7 +82,6 @@
             </div>
             <div class="col-md-6">
                 <div id="details" class="overflow-scroll vh-100">
-
                 </div>
             </div>
         </div>
@@ -130,7 +125,7 @@
         function resetFiltros(selNormal){
             document.querySelectorAll(selNormal).forEach(o =>
             o.value = ''
-            );
+            ); 
         }
     </script>
 
@@ -171,9 +166,8 @@
 
         function store(value){
             localStorage.setItem('darkmode', value);
-
         }
-        </script>
+    </script>
 </body>
 
 </html>

@@ -548,7 +548,7 @@ export function advancedUserFilter(filterSel, rowSel) {
     for (let r of document.querySelectorAll(rowSel)) {
         let ok = true;
         for (let [f, col] of 
-            [[name, 0], [role, 1], [email, 2], [dni, 3]]) {
+            [[name, 1], [role, 2], [email, 3], [dni, 4]]) {
                 if (f == '' || ! ok) continue;
                 const v = valueAt(r, col).toLowerCase();
                 console.log(v, f, col, v.indexOf(f));
@@ -616,6 +616,13 @@ function advancedTeacherFromEditionFilter(filterSel, rowSel) {
         }
         r.style.display = ok ? '' : 'none';
     }
+}
+
+export function printAll(callback)
+{
+    console.log("Imprimiendo");
+    print();
+    callback();
 }
         
 export function teacherFromEditionFilter(){
@@ -714,34 +721,52 @@ export function rmCheckbox(sel){
 */
 
 export function rmCheckboxPrueba(sel, callback){
-    Swal.fire({
-        title: "¿Estás seguro?",
-        text: "Una vez borrado no podrás recuperar la información del estudiante sobre esta edición!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
-            console.log(seleccionadas);
-            seleccionadas.forEach(s => {
-                Cm.rmUser(+s);
-                
-            });
-            callback();
+    if(sel[0] == null)
+    {
+        Swal.fire({
+            title: "eprfig",
+            text: "Una vez borrado no rgsdfv del estudiante sobre esta edición!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+               
+            }
+        });
+    }
+    else{
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Una vez borrado no podrás recuperar la información del estudiante sobre esta edición!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
+                console.log(seleccionadas);
+                seleccionadas.forEach(s => {
+                    Cm.rmUser(+s);
+                    
+                });
+                callback();
+    
+                Swal.fire({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Se ha borrado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                })
+            }
+        });
+    }
 
-            Swal.fire({
-                toast: true,
-                position: 'bottom-end',
-                icon: 'success',
-                title: 'Se ha borrado correctamente',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true
-            })
-        }
-    });
 }
 
 export function matCheckbox(sel, callback){
@@ -749,6 +774,7 @@ export function matCheckbox(sel, callback){
     console.log(seleccionadas);
     seleccionadas.forEach(s => {
         //matricular a s en la edición
+        modalFn().show();
         
     });
     callback();
