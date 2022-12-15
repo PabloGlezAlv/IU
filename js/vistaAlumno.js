@@ -212,7 +212,6 @@ export function createCoursesTable(courses) {
 
     <table class="table">
     <tr>
-        <th><input type="checkbox" name="toggle"/></td>
         <th>Nombre</th>
         <th>Área</th>
         <th>Nivel</th>
