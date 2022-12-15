@@ -210,28 +210,81 @@ body.darkmode{
     --bs-dropdown-link-hover-color: #1e2125;
     --bs-dropdown-link-hover-bg: #e9ecef;
     --bs-dropdown-link-active-color: #fff;
-    --bs-dropdown-link-active-bg: yellow;
+    --bs-dropdown-link-active-bg: #414c50;
     --bs-dropdown-link-disabled-color: #adb5bd;
     --bs-dropdown-item-padding-x: 1rem;
     --bs-dropdown-item-padding-y: 0.25rem;
     --bs-dropdown-header-color: #6c757d;
     --bs-dropdown-header-padding-x: 1rem;
     --bs-dropdown-header-padding-y: 0.5rem;
-    position: absolute;
+
     z-index: var(--bs-dropdown-zindex);
-    display: none;
     min-width: var(--bs-dropdown-min-width);
     padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
     margin: 0;
     font-size: var(--bs-dropdown-font-size);
-    color: yellow;
+    color: red;
     text-align: left;
     list-style: none;
-    background-color: black;
+    background-color: #0784b5;
     background-clip: padding-box;
     border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
     border-radius: var(--bs-dropdown-border-radius);
 }
+
+.darkmode .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    color:white;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.darkmode .dropdown-item:hover,
+.darkmode .dropdown-item:focus {
+    color: var(--bs-dropdown-link-hover-color);
+    background-color: var(--bs-dropdown-link-hover-bg);
+}
+
+.darkmode .dropdown-item.active,
+.darkmode .dropdown-item:active {
+    color: var(--bs-dropdown-link-active-color);
+    text-decoration: none;
+    background-color: var(--bs-dropdown-link-active-bg);
+}
+
+.darkmode .dropdown-item.disabled,
+.darkmode .dropdown-item:disabled {
+    color: var(--bs-dropdown-link-disabled-color);
+    pointer-events: none;
+    background-color: transparent;
+}
+
+.darkmode .dropdown-menu.show {
+    display: block;
+}
+
+.darkmode .dropdown-header {
+    display: block;
+    padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: var(--bs-dropdown-header-color);
+    white-space: nowrap;
+}
+
+.darkmode .dropdown-item-text {
+    display: block;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    color: var(--bs-dropdown-link-color);
+}
+
 .darkmode .input-group>.form-control, .input-group>.form-select, .input-group>.form-floating {
     position: relative;
     flex: 1 1 auto;
