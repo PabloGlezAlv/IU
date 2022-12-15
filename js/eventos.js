@@ -161,9 +161,7 @@ export function bindRmUserRow(clickSelector) {
       })
       .then((willDelete) => {
         if (willDelete) {
-           // swal("El estudiante ha sido borrado con éxito!", {
-           // icon: "success",
-          //});
+
           const row = e.target.closest("tr");
           const id = row.dataset.id;
           console.log(e, id);
@@ -181,9 +179,7 @@ export function bindRmUserRow(clickSelector) {
           })
           
         } 
-        /*else {
-          swal("El estudiante no se ha borrado!");
-        }*/
+
       });
     }));
 }
@@ -770,13 +766,52 @@ export function rmCheckboxPrueba(sel, callback){
 }
 
 export function matCheckbox(sel, callback){
-    const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
-    console.log(seleccionadas);
-    seleccionadas.forEach(s => {
-        //matricular a s en la edición
-        modalFn().show();
+    (async () => {
+
+        const { value: opcion } = await Swal.fire({
+          title: 'Selecciona una edición',
+          input: 'select',
+          inputOptions: {
+            GoogleDocs: 'Google Docs',
+            UcmOnline: 'UCM Online',
+            Programación: 'Programación',
+            EdicionDeTexto: 'Edición de Texto'
+          },
+          inputPlaceholder: 'Seleccionar',
+          showCancelButton: true,
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+              if (value !== '') {
+                resolve()
+              } else {
+                resolve('Hay que seleccionar una edición válida')
+              }
+            })
+          }
+        })
         
-    });
+        if (opcion) {
+        Swal.fire({
+            toast: true,
+            position: 'bottom-end',
+            icon: 'success',
+            title: ('usuarios añadidos a ' + opcion),
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+          })
+          
+          const seleccionadas = document.querySelector(sel).dataset.selected.split(",");
+          console.log(seleccionadas);
+          seleccionadas.forEach(s => {
+              //matricular a s en la edición
+              
+          });
+        }
+        
+        })()
+
+
     callback();
 }
 

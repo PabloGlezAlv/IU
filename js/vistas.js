@@ -82,19 +82,19 @@ export function createUserTable(users) {
 
         <!--Boton para el filtro de busqueda avanzada de usuarios-->
         <div class="col">
-            <button id="search-advanced-toggle-users" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="search-advanced-toggle-users" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Avanzada🔍</button>
             <button id="clean-filters" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-users input, #filter-in-users select')" >
             <i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
         </div>
 
         <!--Botón para borrar varios usuarios de una vez-->
         <div class="col">
-        <button id="rm-checkbox" class="rm-checkbox-users btn btn-outline-secondary" >Borrar seleccionados 🗑️</button>
+        <button id="rm-checkbox" class="rm-checkbox-users btn btn-outline-secondary" >Borrar🗑️</button>
         </div>
 
-        <!--Botón para matricular varios usuarios de una vez en una edición-->
+        <!--Botón para matricular varios usuarios de una vez a una edición-->
         <div class="col">
-        <button id="mat-checkbox" class="mat-checkbox-users btn btn-outline-secondary" >Matricular seleccionados</button>
+        <button id="mat-checkbox" class="mat-checkbox-users btn btn-outline-secondary" >Matricular🧑‍🏫</button>
         </div>
         
         <div class="col text-end">${botonNuevoUsuario}</div>
@@ -208,7 +208,7 @@ export function createCoursesTable(courses) {
 
         <!--Boton para la busqueda avanzada de cursos-->
         <div class="col">
-            <button id="search-advanced-toggle-courses" title="Búsqueda avanzada" class="adavance-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="search-advanced-toggle-courses" title="Búsqueda avanzada" class="adavance-filter btn btn-outline-secondary">Avanzada🔍</button>
             <button id="clean-filters-courses" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-courses input, #filter-in-courses select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
         </div>
 
@@ -308,7 +308,7 @@ export function createDetailsForEdition(edition) {
 
         <!--Boton para el filtro para profesores de un curso en concreto-->
         <div class="col">
-            <button id="search-advanced-toggle-teachers-on-edition" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="search-advanced-toggle-teachers-on-edition" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Avanzada🔍</button>
             <button id="clean-filters-oneedition2" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-oneedition2 input, #filter-in-oneedition2 select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
         </div>
 
@@ -341,7 +341,7 @@ export function createDetailsForEdition(edition) {
 
         <!--Boton para el filtro para alumnos de un curso en concreto-->
         <div class="col">
-            <button id="search-advanced-toggle-students-on-edition" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Búsqueda avanzada🔍</button>
+            <button id="search-advanced-toggle-students-on-edition" title="Búsqueda avanzada" class="advanced-filter btn btn-outline-secondary">Avanzada🔍</button>
             <button id="clean-filters-oneedition" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-oneedition input, #filter-in-oneedition select')" ><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
         </div>
 

@@ -122,7 +122,7 @@ function update() {
             update()
         });
 
-       //U.one("#escapeHatch").addEventListener('click', () => update());
+       U.one("#escapeHatch").addEventListener('click', () => location.reload());
 
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
@@ -232,7 +232,7 @@ function updateProfesor() {
             updateProfesor()
         });
 
-       //U.one("#escapeHatch").addEventListener('click', () => update());
+       U.one("#escapeHatch").addEventListener('click', () => locationn.reload());
 
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
@@ -342,7 +342,7 @@ function updateAlumno() {
             updateAlumno()
         });
 
-       //U.one("#escapeHatch").addEventListener('click', () => update());
+       U.one("#escapeHatch").addEventListener('click', () => location.reload());
 
         E.bindCheckboxColumn("#users", "cambioSelUsuarios");
 
