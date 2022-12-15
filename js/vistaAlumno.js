@@ -82,12 +82,6 @@ export function createUserTable(users) {
             <button id="clean-filters" title="Limpiar filtros" class="clean-filter btn btn-outline-secondary" onclick="resetFiltros('#filter-in-users input, #filter-in-users select')" >
             <i class="fa-sharp fa-solid fa-filter-circle-xmark"></i></button>
         </div>
-
-
-        <!--Botón para matricular varios usuarios de una vez en una edición-->
-        <div class="col">
-        <button id="mat-checkbox" class="mat-checkbox-users btn btn-outline-secondary" >Matricular seleccionados</button>
-        </div>
     </div>
 
     <!--Filtro de busqueda avanzada de usuarios-->
@@ -117,7 +111,6 @@ export function createUserTable(users) {
 
     <table class="table">
     <tr>
-        <th><input type="checkbox" name="toggle"/></td>
         <th>Nombre</th>
         <th>Rol</th>
         <th>Correo</th>
@@ -219,6 +212,7 @@ export function createCoursesTable(courses) {
 
     <table class="table">
     <tr>
+        <th><input type="checkbox" name="toggle"/></td>
         <th>Nombre</th>
         <th>Área</th>
         <th>Nivel</th>
